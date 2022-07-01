@@ -1,3 +1,4 @@
+//assignment3
 set [new Simulator]
 set tracefile [open "out.tr" w]
 $ns trace-all $tracefile
