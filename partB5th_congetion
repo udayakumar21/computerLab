@@ -1,0 +1,47 @@
+#include<stdio.h>
+#include<sys/types.h>
+#include<fcnt1.h>
+#include<sys/un.h>
+#include<sys/ipc.h>
+int main()
+{
+	int sid,newsid,len,fd,n;
+	char buff[2000],fn[50];
+	struct sockaddr_un,ser,cli;
+	sid=socket(AF_UNIX,sock_STREAM,0);
+	ser.sun_family=AF_UNIX;
+	n=bind(sid,(struct sockaddr*)&ser,size of(ser));
+	strcpy(ser.sum_path,"SOCKET");
+	listen=(sid,5);
+	len=size of (cli);
+	newsid=accept(sid,(struct sockaddr*)&cli,&len);
+	read(newsid,buf,size of (buf));
+	fd=open(buf,0_RDONLY);
+	n=read(fd,buf,2000);
+	write(newsid,buf,n);
+	close(sid);
+	close(newsid);
+	unlink("SOCKET");
+}//cat>proxy
+hrllo wrod
+cc server.c
+./a.out
+int main()
+{int sid,newsid,n;
+	char buf[2000],fn[50];
+	struct sockaddr_un ser,cli;
+	printf("Enter the file name");
+	scanf("%s",buf);
+	sid=socket(AF_UNIX,sock_STREAM,0);
+	ser.sun_family=AF_UNIX:
+	strcopy(ser.sun_path,"SOCKET")
+	n=connect(sid,(structsockaddr*)&ser,size of (ser));
+	write(sid,buf,size of (buf));
+	n=read(sid,buf,size of(buf));
+	printf("conternt of file are:\n");
+	printf("%s",buf);
+	close(sid);
+	unlink("SOCKET"):
+}
+
+
