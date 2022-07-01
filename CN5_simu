@@ -1,0 +1,44 @@
+set ns [new Simulator]
+set tr [open "out.tr" w]
+$ns trace-all $tr 
+set ntr [open "out.nam" w]
+$ns namtrace-all $ntr
+set no [$ns node]
+set n1 [$ns node] 
+set n2 [$ns node]
+set n3 [$ns node]
+set n4 [$ns node]
+set n5 [$ns node]
+$ns duplex-link $n0 $n1 15Mb 4ms DropTail
+$ns duplex-link $n1 $n2 5Mb 3ms DropTai
+set Lan [$ns newLan "$n1 $n3 $n4 $n5" 3MB qms LL Queue/DropTail Mac/Csma/cd channel]
+set tcp [new Agent/TCP]
+$ns attach-agent $n0 $tcp
+set sink [new Agent/TCPSink]
+$ns attach-agent $n5 $sink
+$ns connect $tcp $sink
+set ftp [new Appplication/FTP]
+$ftp attach-agent $tcp
+proc finish{} {
+global ns tracefile namfile
+$ns flush-tracefile
+close $tracefile
+close $namfile
+exec nam out.nam &
+exit 0
+}
+$ns at 1.0 "$ftp start"
+$ns at 5.0 "$ftp stop"
+$ns at 10.0 "finish"
+$ns run
+AWK
+BEGIN{C=0;ftppktsize=0;ftpthrough=0}
+{
+if($1=="r" &&$5=="tcp"&& $4=="0"&& $3=="3")
+c++;
+$6=ftppktsize;
+}
+END{ftpthrouthput=C+ftppktsize/10;
+printf("throughputis =%d",ftpthroughput);
+}
+1842
