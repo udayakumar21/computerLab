@@ -1,0 +1,42 @@
+#include<stdio.h>
+int main()
+{
+	int size,orate,n,i,pkt[50];
+	printf("enter the bucket size");
+	scanf("%d",&size);
+	printf("Enter the total no of packet");
+	scanf("%d",&n);
+	printf("enter the output rate");
+	scanf("%d",&orate);
+	for(i=0;i<n;i++)
+	{
+		printf("Enter %d packet size",i+1);
+        scanf("%d",&pkt[i]);
+	}
+	for(i=0;i<n;i++)
+	{
+		if(pkt[i]>size)
+		{
+			printf("packet %d will be discared",i+1);
+			continue;
+		}
+		while(pkt[i]!=0)
+		{
+			if(orate<pkt[i])
+			{
+				printf("from packet %d %d bytes are transmittted\n",i+1,orate);
+				pkt[i]=pkt[i]-orate;
+			}
+			else
+			{
+				printf("%d bytes are directly tramistted\n",pkt[i]);
+				pkt[i]=0;
+			}
+		}
+		printf("packet %d is completly tramisitted\n",i+1);
+	}
+	return 0;
+}
+
+			
+
