@@ -54,3 +54,11 @@ $ns at 0.7 "$p3 send" $ns at 0.8 "$p3 send"
 $ns at 0.9 "$p3 send" $ns at 1.0 "$p3 send"
 $ns at 2.0 "finish"
 $ns run
+AWK.
+BEGIN{c=0;}
+{
+if($1=="a")
+c++;
+}
+END{printf("no of pkt dropped%d",c);
+}
