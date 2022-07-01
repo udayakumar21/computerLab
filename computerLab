@@ -1,4 +1,4 @@
-assignment2
+four node pt n/w usinf tcp/udp :assignment2
 set ns [new Simulator]
 set tracefile[open "out.tr" w]
 $ns trace-all $tracefile
